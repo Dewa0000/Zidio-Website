@@ -1,7 +1,7 @@
 .logo{
     display: flex;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    font-weight: 700;
+    font-weight: 500;
     justify-content: space-between;
     align-items: center;
     background-color: rgb(85, 215, 174);
@@ -24,6 +24,7 @@
 }
 
 .nav-links li a{
-    font-size: 1.5rem;
+    font-size: 40px;
+    font-weight: 800;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
