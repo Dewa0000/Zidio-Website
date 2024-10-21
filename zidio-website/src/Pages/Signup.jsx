@@ -43,7 +43,7 @@ const Signup = () => {
         navigate("/login")
         setTimeout(() => {
           toast.success('Sign Up Successful')
-        }, 30);
+        }, 40);
       }, 20);
     }
 

@@ -1,9 +1,9 @@
 import React from 'react'
 import { useState, useEffect, useRef } from 'react'
 import { useNavigate, Link } from 'react-router-dom';
-
-import toast, { Toaster } from 'react-hot-toast';
 import Logo from '../Components/Logo';
+import toast, { Toaster } from 'react-hot-toast';
+
 
 const Login = () => {
 
@@ -40,7 +40,7 @@ const Login = () => {
         navigate('/')
         setTimeout(() => {
           toast.success('Login Successful')
-        }, 30);
+        }, 40);
       }, 20);
 
     }
