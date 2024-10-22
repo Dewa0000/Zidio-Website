@@ -66,6 +66,32 @@ app.post('/login', async (req, res) => {
 
 })
 
+app.post('/logout', async (req, res) => {
+    
+    let { userId } = req.body
+    let user = await userModel.findById(userId)
+
+    if (user) {
+        res.json({success: true, message: "Logout Successful", user: user})
+    }
+    else {
+        res.json({success: false, message: "User does not exists"})
+    }
+})
+
+app.post('/fetchUser', async (req, res) => {
+    
+    let { userId } = req.body
+    let user = await userModel.findById(userId)
+
+    if (user) {
+        res.json({success: true, message: "User fetched Successfully", user: user})
+    }
+    else {
+        res.json({success: false, message: "User does not exists"})
+    }
+})
+
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
