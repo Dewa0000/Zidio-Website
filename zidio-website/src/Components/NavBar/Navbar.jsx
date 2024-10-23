@@ -1,10 +1,86 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
+import Avatar from 'react-avatar';
+import toast, { Toaster } from 'react-hot-toast';
 import Avatar from 'react-avatar';
 import toast, { Toaster } from 'react-hot-toast';
 
 const Navbar = () => {
+
+  const linkClass = ({ isActive }) =>
+    isActive ? "hover:text-red-400 border-b-[2.75px] border-red-400 py-1.5" : "hover:text-red-400 py-1.5"
+
+  const [user, setuser] = useState()
+  const [isLoggedIn, setisLoggedIn] = useState(null)
+  const [error, setError] = useState('')
+
+
+  const fetchUser = async () => {
+    let a = await fetch('http://localhost:3000' + '/fetchUser', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userId: localStorage.getItem('userId')
+      }),
+    })
+    let data = await a.json()
+
+    if (data.success == true) {
+
+      setuser(data.user)
+    }
+    else {
+      setError(data.message)
+    }
+  }
+
+  const logout = async () => {
+    let a = await fetch('http://localhost:3000' + '/fetchUser', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userId: localStorage.getItem('userId')
+      }),
+    })
+    let data = await a.json()
+
+    if (data.success == true) {
+
+      toast.success('Logout Successful')
+      localStorage.removeItem('userId')
+      localStorage.removeItem('isLoggedIn')
+      localStorage.removeItem('token')
+    }
+    else {
+      setError(data.message)
+    }
+  }
+
+  const setuserlog = () => {
+    if (localStorage.getItem('isLoggedIn') == 'true') {
+      setisLoggedIn(true)
+      console.log(true)
+    }
+    else {
+      setisLoggedIn(false)
+      console.log(false)
+
+    }
+  }
+
+  useEffect(() => {
+    fetchUser()
+    setuserlog()
+  }, [user, isLoggedIn])
+
+
+
 
   const linkClass = ({ isActive }) =>
     isActive ? "hover:text-red-400 border-b-[2.75px] border-red-400 py-1.5" : "hover:text-red-400 py-1.5"
@@ -115,5 +191,7 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+
 
 
