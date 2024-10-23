@@ -4,8 +4,6 @@ import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import Avatar from 'react-avatar';
 import toast, { Toaster } from 'react-hot-toast';
-import Avatar from 'react-avatar';
-import toast, { Toaster } from 'react-hot-toast';
 
 const Navbar = () => {
 
